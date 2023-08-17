@@ -8,7 +8,7 @@ goのカルチャーからテスト駆動でやりたいけど無理ぽそう。
 
 ## コマンドライン引数
 Goのデフォルトで用意されているflagパッケージを使用する。
-https://pkg.go.dev/flag
+(https://pkg.go.dev/flag)</br>
 難点はオプションの競合をどうするか。
 現時点でfunc (*FlagSet) xxxFunc()を使って非nilエラーが返せるからここでなんとかできないか。
 
@@ -23,17 +23,19 @@ lineの数を指定する。デフォルトは1000行。
 ### -b
 ファイルの分割サイズを指定する。デフォルトは1MB。
 バイトサイズの扱いはこの辺でいけそう。
-https://pkg.go.dev/github.com/inhies/go-bytesize
+~~https://pkg.go.dev/github.com/inhies/go-bytesize~~（デフォルトじゃなかった）
 
 ### -a
 サフィックスを指定する。デフォルトは'xaa'。
 Xは第2引数で指定した文字列がつく。デフォルトは'x'。
 intの値でaがつく数が変わる。
-Ex. default -> xaa, xab, xac, ...
-    5 -> xaaaaa, xaaaab, xaaaac, ...
-
+```
+Ex) default -> xaa, xab, xac, ...
+    5  ->  xaaaaa, xaaaab, xaaaac, ...
+```
 ## ファイルの入出力
-
+ioパッケージを使用する。
+エラー時にファイルを閉じるかどうかドキュメント見てじっそうすること。
 ## テストについて
 テストはGoのデフォルトで用意されているtestingパッケージを使用する。
 

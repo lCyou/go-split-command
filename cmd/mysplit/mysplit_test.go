@@ -1,7 +1,7 @@
-package main
+package main_test
 
 import "testing"
 
-func TestjudgeParam(t *testing.T) {
-	
+func testjudgeParam(t *testing.T) {
+
 }
