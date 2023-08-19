@@ -10,7 +10,7 @@ import (
 var (
 	l int
 	n int
-	b string
+	b int
 	a int
 	splitType string = ""
 )
@@ -19,7 +19,7 @@ var (
 func init() {
 	flag.IntVar(&l, "l", 1000, "-l line_count")
 	flag.IntVar(&n, "n", 2, "-n chank_count")
-	flag.StringVar(&b, "b", "1MB", "-b byte_count")
+	flag.IntVar(&b, "b", 1000000, "-b byte_count")
 	flag.IntVar(&a, "a", 2, "-a saffix_length(1~13)")
 }
 
@@ -51,23 +51,6 @@ func validateArgs() error {
 	if _, err := os.Stat(flag.Arg(0)); err != nil {
         return errors.New("Error: Doesn't exists that you specified : " + flag.Arg(0))
     }
-	return nil
-}
-
-func makeSpliter() any{  
-	var fi FileInfo
-	fi = FileInfo{flag.Arg(0), flag.Arg(1), a}
-	switch splitType {
-	case "l":
-		s := Line{l, fi}
-		return s
-	case "n":
-		s := Chunk{n, fi}
-		return s
-	case "b":
-		s := Bynary{b, fi}
-		return s
-	}
 	return nil
 }
 
