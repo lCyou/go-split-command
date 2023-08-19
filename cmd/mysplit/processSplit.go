@@ -1,11 +1,12 @@
 package main
 
-import(
-	"bufio"
+import (
+	// "bufio"
+	// "flag"
 	"fmt"
-	// "io"
-	"os"
+	"io"
 	"errors"
+	"os"
 )
 
 type FileInfo struct {
@@ -35,9 +36,10 @@ func (l Line) Split() error {
     }
     defer f.Close() // ! important
 
-	scanner := bufio.NewScanner(f)
-	for  {
-		scanner.Scan()
+	scanner := io.NewScanner(f)
+	count := 0
+	for scanner.Scan(){
+		count++
 		fmt.Println(scanner.Text())
 	}
 	return nil
@@ -71,7 +73,7 @@ func (n Chunk) Split() error {
 	// ファイル操作
     f, err := os.Open(n.file)
     if err != nil{
-        return errors.New("Error: Cannot open file : " + b.file)	
+        return errors.New("Error: Cannot open file : " + n.file)	
     }
     defer f.Close() // ! important
 
