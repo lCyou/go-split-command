@@ -23,7 +23,7 @@ lineの数を指定する。デフォルトは1000行。
 ### -b
 ファイルの分割サイズを指定する。デフォルトは1MB。
 バイトサイズの扱いはこの辺でいけそう。
-~~https://pkg.go.dev/github.com/inhies/go-bytesize~~（デフォルトじゃなかった）
+~~(https://pkg.go.dev/github.com/inhies/go-bytesize)~~  デフォルトじゃなかった
 
 ### -a
 サフィックスを指定する。デフォルトは'xaa'。
