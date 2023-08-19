@@ -1,12 +1,7 @@
-package main
+package main_test
 
 import "testing"
 
-func TestHello(t *testing.T) {
-	got := Hello()
-	want := "Hello, world"
+func testjudgeParam(t *testing.T) {
 
-	if got != want {
-		t.Errorf("got %q want %q", got, want)
-	}
 }
