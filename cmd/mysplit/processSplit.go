@@ -1,6 +1,7 @@
 package main
 
 import(
+	"bufio"
 	"fmt"
 	// "io"
 	"os"
@@ -26,9 +27,20 @@ type Chunk struct{
 	FileInfo
 }
 
-func (l Line) Split() string {
+func (l Line) Split() error {
+	// ファイル操作
+    f, err := os.Open(l.file)
+    if err != nil{
+        return errors.New("Error: Cannot open file : " + l.file)	
+    }
+    defer f.Close() // ! important
 
-	return fmt.Sprintf("%d", l.LineCount)
+	scanner := bufio.NewScanner(f)
+	for  {
+		scanner.Scan()
+		fmt.Println(scanner.Text())
+	}
+	return nil
 }
 
 func (b Bynary) Split() error {
@@ -55,8 +67,17 @@ func (b Bynary) Split() error {
 	return nil
 }
 
-func (n Chunk) Split() string {
-	return fmt.Sprint("hai, donmai!")
+func (n Chunk) Split() error {
+	// ファイル操作
+    f, err := os.Open(n.file)
+    if err != nil{
+        return errors.New("Error: Cannot open file : " + b.file)	
+    }
+    defer f.Close() // ! important
+
+
+
+	return nil
 }
 
 
