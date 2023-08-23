@@ -1,10 +1,10 @@
 package main
 
 import (
-	// "bufio"
+	"bufio"
 	// "flag"
 	"fmt"
-	"io"
+	// "io"
 	"errors"
 	"os"
 )
@@ -36,11 +36,15 @@ func (l Line) Split() error {
     }
     defer f.Close() // ! important
 
-	scanner := io.NewScanner(f)
+	scanner := bufio.NewScanner(f)
 	count := 0
 	for scanner.Scan(){
 		count++
 		fmt.Println(scanner.Text())
+		if count == l.LineCount {
+			fmt.Println("----------------------------")
+			count = 0
+		}
 	}
 	return nil
 }
@@ -73,11 +77,15 @@ func (n Chunk) Split() error {
 	// ファイル操作
     f, err := os.Open(n.file)
     if err != nil{
-        return errors.New("Error: Cannot open file : " + n.file)	
+		return errors.New("Error: Cannot open file : " + n.file)	
     }
     defer f.Close() // ! important
-
-
+	
+	if fi, err := f.Stat(); err != nil {
+		return err
+	} else{
+		fmt.Println(fi.Size())
+	}
 
 	return nil
 }
